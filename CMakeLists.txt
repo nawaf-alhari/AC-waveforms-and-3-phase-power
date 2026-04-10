@@ -3,4 +3,4 @@ project (AcWaveform C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(AcWaveform main.c)
+add_executable(AcWaveform main.c waveform.c waveform.h io.c io.h)
