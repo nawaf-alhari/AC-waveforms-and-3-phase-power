@@ -5,6 +5,7 @@
 #include "waveform.h"
 
 
+struct WaveformSample records[1000];
 
 
 
