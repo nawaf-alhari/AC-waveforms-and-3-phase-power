@@ -2,11 +2,12 @@
 // Created by ADMIN on 4/10/2026.
 //
 #include <stdio.h>
+#include <malloc.h>
 #include "io.h"
 #include "waveform.h"
 
 
-int  loadData(struct WaveformSample records [])
+ WaveformSample  *  loadData(int * counter)
 {
     char filename [50];
     printf("Enter your log file name");
@@ -20,31 +21,47 @@ int  loadData(struct WaveformSample records [])
         return -1;
     }
     char line [256];
-    int counter = 0 ;
-
+    int count = 0 ;
     fgets(line,sizeof (line) , logFile); // to avoid read the header
 
-  while(fgets(line,sizeof (line) , logFile) && counter < 1000)
+    while(fgets(line,sizeof (line) , logFile) ) // count how many samples we actually have
+    {
+        count++;
+    }
+    WaveformSample * records = malloc (count * sizeof ( WaveformSample)); //allocate memory depends on samples we have
+    if(records == NULL)
+    {
+        printf("Failed");
+        fclose(logFile);
+        return -1;
+    }
+
+    rewind(logFile); // to reset the cursor to the begining
+    fgets(line,sizeof (line) , logFile); // to avoid read the header
+
+    int counter2=0;
+    while(fgets(line,sizeof (line) , logFile) )
   {
       sscanf(line ,"%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf" ,
-             &records[counter].time,
-             &records[counter].phaseA,
-             &records[counter].phaseB,
-             &records[counter].phaseC,
-             &records[counter].current,
-             &records[counter].frequency,
-             &records[counter].powerFactor,
-             &records[counter].percentage);
-      counter++;
+             &records[counter2].time,
+             &records[counter2].phaseA,
+             &records[counter2].phaseB,
+             &records[counter2].phaseC,
+             &records[counter2].current,
+             &records[counter2].frequency,
+             &records[counter2].powerFactor,
+             &records[counter2].percentage);
+      counter2++;
   }
 
     fclose(logFile);
-  return counter;
+    *counter = counter2;
+  return records;
 
 }
 
 //for testing purpose only
-void printAllrow(struct WaveformSample *records , int size)
+void printAllrow( WaveformSample *records , int size)
 {
     for( int i =0 ; i < 1000 ;i++)
     {

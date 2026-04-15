@@ -5,7 +5,7 @@
 #ifndef ACWAVEFORM_WAVEFORM_H
 #define ACWAVEFORM_WAVEFORM_H
 // 1- Define a WaveformSample struct
- struct WaveformSample {
+typedef struct  {
     double time ;
     double phaseA;
     double phaseB;
@@ -14,7 +14,7 @@
     double frequency;
     double powerFactor;
     double percentage;
-};
+}WaveformSample;
 
 
 

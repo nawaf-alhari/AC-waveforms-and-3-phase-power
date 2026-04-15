@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include "io.h"
 #include "waveform.h"
-#define  size 1000
 int main( )
 {
-
+    int counter=0;
     printf("Welcome to AcWaveform mini project \n\n");
-    struct WaveformSample records[size];
-  int count=  loadData(records);
+    WaveformSample * records = loadData( &counter);
+
 
    // printAllrow(records,size); to test data
-    printf("connt is %d" ,count);
+
+    printAllrow(records , counter);
+    printf("count is %d\n" ,counter);
 
 
 

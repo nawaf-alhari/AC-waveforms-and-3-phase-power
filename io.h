@@ -8,6 +8,7 @@
 
 #include "waveform.h"
 
-int  loadData(struct WaveformSample records[]);
-void printAllrow(struct WaveformSample *records , int size);
+WaveformSample  * loadData(int * counter);
+
+void printAllrow( WaveformSample *records , int size);
 #endif //ACWAVEFORM_IO_H
