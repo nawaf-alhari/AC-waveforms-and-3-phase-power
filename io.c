@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <malloc.h>
 #include "io.h"
-#include "waveform.h"
+#include "waveform.h"//
 
 
- WaveformSample  *  loadData(int * counter)
+ WaveformSample  *  loadData(int * counter)//
 {
     char filename [50];
     printf("Enter your log file name");
@@ -18,7 +18,7 @@
     if (logFile== NULL)
     {
         printf("File not exist. \n\n");
-        return -1;
+        return NULL;
     }
     char line [256];
     int count = 0 ;
@@ -28,12 +28,13 @@
     {
         count++;
     }
+
     WaveformSample * records = malloc (count * sizeof ( WaveformSample)); //allocate memory depends on samples we have
     if(records == NULL)
     {
         printf("Failed");
         fclose(logFile);
-        return -1;
+        return NULL;
     }
 
     rewind(logFile); // to reset the cursor to the begining
@@ -55,15 +56,15 @@
   }
 
     fclose(logFile);
-    *counter = counter2;
+    *counter =  count;
   return records;
 
 }
 
 //for testing purpose only
-void printAllrow( WaveformSample *records , int size)
+void printAllrow( WaveformSample *records , int counter)
 {
-    for( int i =0 ; i < 1000 ;i++)
+    for( int i =0 ; i < counter ;i++)//
     {
        printf("%f,%f,%f,%f,%f,%f,%f,%f \n" ,
               records[i].time,

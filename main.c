@@ -13,7 +13,17 @@ int main( )
     printAllrow(records , counter);
     printf("count is %d\n" ,counter);
 
+    double rms_phaseA = calculate_rms(records,counter,'a');
+    double rms_phaseB = calculate_rms(records,counter,'b');
+    double rms_phaseC = calculate_rms(records,counter,'c');
+
+    printf("RMS for phase A is %lf\n" ,rms_phaseA);
+    printf("RMS for phase B is %lf\n" ,rms_phaseB);
+    printf("RMS for phase C is %lf\n" ,rms_phaseC);
+
+
 
 
     return 0;
 }
+
