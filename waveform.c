@@ -38,4 +38,63 @@ double calculate_rms (WaveformSample * records , int count , char voltage_phase 
     double rms = sqrt(mean);
     return rms;
 }
+// ////////////////////////////////////////////////////////////////////////////////////////////
+double calculate_peak_to_peak (WaveformSample * records , int count , char voltage_phase )
+{
+    double max = 0;
+    double min = 0;
+        switch (voltage_phase)
+        {
+            case 'a' :       max = records->phaseA;
+                             min = records->phaseA;
+                              break;
+            case 'b' :        max = records->phaseB;
+                              min = records->phaseB;
+                               break;
+            case 'c' :        max = records->phaseC;
+                              min = records->phaseC;
+                               break;
+        }
+    for (int i = 0; i < count; i++)
+    {
+        if (voltage_phase == 'a')
+        {
+            double voltA = (records + i)->phaseA;
+            if (voltA > max)
+            {
+                max = voltA;
+            }
+            if (voltA < min)
+            {
+                min = voltA;
+            }
+        }
+        else if (voltage_phase == 'b')
+        {
+            double voltB = (records + i)->phaseB;
+            if (voltB > max)
+            {
+                max = voltB;
+            }
+            if (voltB < min)
+            {
+                min = voltB;
+            }
+        }
+        else if (voltage_phase == 'c')
+        {
+            double voltC = (records + i)->phaseC;
+            if (voltC > max)
+            {
+                max = voltC;
+            }
+            if (voltC < min)
+            {
+                min = voltC;
+            }
+        }
+    }
+    double peak_to_peak = max - min;
+    return peak_to_peak;
+}
 

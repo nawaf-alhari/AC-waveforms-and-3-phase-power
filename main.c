@@ -20,8 +20,15 @@ int main( )
     printf("RMS for phase A is %lf\n" ,rms_phaseA);
     printf("RMS for phase B is %lf\n" ,rms_phaseB);
     printf("RMS for phase C is %lf\n" ,rms_phaseC);
+// ///////////////////////////////////////////////////////////////////////////////////////////////
+// double calculate_peak_to_peak (WaveformSample * records , int count , char voltage_phase )
+double peak_to_peak_A = calculate_peak_to_peak(records, counter, 'a');
+    double peak_to_peak_B = calculate_peak_to_peak(records, counter, 'b');
+    double peak_to_peak_C = calculate_peak_to_peak(records, counter, 'c');
 
-
+    printf("peak to peak for phase A = %lf\n",peak_to_peak_A);
+    printf("peak to peak for phase B = %lf\n",peak_to_peak_B);
+    printf("peak to peak for phase C = %lf\n",peak_to_peak_C);
 
 
     return 0;

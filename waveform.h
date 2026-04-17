@@ -18,5 +18,7 @@ typedef struct  {
 
 double calculate_rms (WaveformSample * records , int count , char voltage_phase );
 
+double calculate_peak_to_peak (WaveformSample * records , int count , char voltage_phase );
+
 
 #endif //ACWAVEFORM_WAVEFORM_H
