@@ -20,5 +20,7 @@ double calculate_rms (WaveformSample * records , int count , char voltage_phase 
 
 double calculate_peak_to_peak (WaveformSample * records , int count , char voltage_phase );
 
+double calculate_dc_offset (WaveformSample * records , int count , char voltage_phase );
 
+void check_phase_tolerance ( double rms_phaseA , double rms_phaseB ,  double rms_phaseC);
 #endif //ACWAVEFORM_WAVEFORM_H
