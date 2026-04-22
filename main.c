@@ -4,6 +4,8 @@
 int main( )
 {
     int counter=0;
+    int clippingA =0;
+            int clippingB =0 ; int clippingC = 0;
     printf("Welcome to AcWaveform mini project \n\n");
     WaveformSample * records = loadData( &counter);
 
@@ -41,6 +43,17 @@ int main( )
     printf("Dc offset phase C = %lf\n",dc_offest_C);
 
     check_phase_tolerance (  rms_phaseA , rms_phaseB , rms_phaseC);
+
+    clippingA=  get_data_clipping(records,counter , 'a');
+    clippingB=  get_data_clipping(records,counter , 'b');
+    clippingC=  get_data_clipping(records,counter , 'c');
+
+    printf("Clipping A = %d \n",clippingA);
+    printf("Clipping B = %d\n",clippingB);
+    printf("Clipping C = %d\n",clippingC);
+
+    generateResultFile("result.txt",rms_phaseA,rms_phaseB , rms_phaseC , peak_to_peak_A, peak_to_peak_B , peak_to_peak_C , dc_offest_A
+                      , dc_offest_B , dc_offest_C , clippingA , clippingB , clippingC  );
+
     return 0;
 }
-

@@ -157,3 +157,38 @@ void check_phase_tolerance ( double rms_phaseA , double rms_phaseB ,  double rms
 
     }
 }
+
+int get_data_clipping (WaveformSample * records , int count , char voltage_phase  )
+{
+    int clipping_number = 0 ;
+    for ( int i =0 ; i < count ; i++) // from 0 -- 999
+    {
+        if (voltage_phase =='a')
+        {
+            double voltage = (records+i)->phaseA;
+            if(fabs (voltage ) >= 324.9)
+            {
+                clipping_number++;
+            }
+        }
+        else if (voltage_phase =='b' )
+        {
+            double voltage = (records+i)->phaseB;
+            if(fabs (voltage)  >= 324.9 )
+            {
+                clipping_number++;
+            }
+
+        }
+        else if (voltage_phase =='c' )
+        {
+            double voltage = (records+i)->phaseC;
+            if(fabs (voltage ) >= 324.9 )
+            {
+                clipping_number++;
+            }
+
+        }
+    }
+    return clipping_number;
+}
