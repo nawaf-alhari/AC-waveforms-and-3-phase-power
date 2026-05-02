@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "io.h"
+#include "stdlib.h"
 #include "waveform.h"
 int main( )
 {
@@ -54,6 +55,6 @@ int main( )
 
     generateResultFile("result.txt",rms_phaseA,rms_phaseB , rms_phaseC , peak_to_peak_A, peak_to_peak_B , peak_to_peak_C , dc_offest_A
                       , dc_offest_B , dc_offest_C , clippingA , clippingB , clippingC  );
-
+free(records);
     return 0;
 }
