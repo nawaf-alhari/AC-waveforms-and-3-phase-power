@@ -6,12 +6,12 @@
 #include "io.h"
 #include "waveform.h"//
 
-
- WaveformSample  *  loadData(int * counter)//
+//WaveformSample  *  loadData(const char* filename int * counter)
+ WaveformSample  *  loadData(const char* filename, int * counter)//
 {
-    char filename [50];
-    printf("Enter your log file name");
-    scanf("%s" , filename);
+    //char filename [50];
+   // printf("Enter your log file name");
+   // scanf("%s" , filename);
 
     FILE *logFile =fopen(filename , "r");
 
@@ -80,7 +80,7 @@ void printAllrow( WaveformSample *records , int counter)
     }
 }
 
-void generateResultFile(char *filename , double rms_phaseA ,double rms_phaseB , double rms_phaseC , double peak_to_peak_A , double peak_to_peak_B ,
+void ExportData(char *filename , double rms_phaseA ,double rms_phaseB , double rms_phaseC , double peak_to_peak_A , double peak_to_peak_B ,
                         double peak_to_peak_C,double dc_offest_A , double dc_offest_B , double dc_offest_C , int clippingA , int clippingB , int clippingC )
 {
     FILE * outfile = fopen(filename,"w");
@@ -97,31 +97,31 @@ void generateResultFile(char *filename , double rms_phaseA ,double rms_phaseB , 
 
     if ( rms_phaseA >= min_tolerance && rms_phaseA <=max_tolerance)
     {
-        fprintf(outfile,"Phase A : %lf --> is in normal range \n" ,rms_phaseA);
+        fprintf(outfile,"Phase A : %lf --> is in accepted tolerance \n" ,rms_phaseA);
     }
     else
     {
-        fprintf(outfile,"Phase A : %lf -->  is out of normal range \n",rms_phaseA);
+        fprintf(outfile,"Phase A : %lf -->  is out of accepted tolerance \n",rms_phaseA);
 
     }
 
     if ( rms_phaseB >= min_tolerance && rms_phaseB <=max_tolerance)
     {
-        fprintf(outfile,"Phase B :  %lf -->    is in normal range \n",rms_phaseB);
+        fprintf(outfile,"Phase B :  %lf -->    is in accepted tolerance \n",rms_phaseB);
     }
     else
     {
-        fprintf(outfile,"Phase B  :   %lf --> is out of normal range \n" ,rms_phaseB);
+        fprintf(outfile,"Phase B  :   %lf --> is out of accepted tolerance \n" ,rms_phaseB);
 
     }
 
     if ( rms_phaseC >= min_tolerance && rms_phaseC <=max_tolerance)
     {
-        fprintf(outfile,"Phase C  : %lf -->  is in normal range \n",rms_phaseC);
+        fprintf(outfile,"Phase C  : %lf -->  is in accepted tolerance \n",rms_phaseC);
     }
     else
     {
-        fprintf(outfile,"Phase C   :   %lf -->  is out of normal range \n",rms_phaseC);
+        fprintf(outfile,"Phase C   :   %lf -->  is out of accepted tolerance \n",rms_phaseC);
 
     }
 
